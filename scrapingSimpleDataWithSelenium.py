@@ -26,6 +26,9 @@ def get_driver():
     
     optionsForSearch.add_experimental_option("excludeSwitches", ["enable-automation"])
     optionsForSearch.add_argument("disable-blank-features=AutomationControlled")
+
+    #fixes the problem of the tab immediately closing after the code execution
+    optionsForSearch.add_experimental_option("detach", True)
     
 
     
@@ -36,7 +39,7 @@ def get_driver():
 
     return driver
 
-#For the xpath, ommit the /text() at the end
+#For the xpath, ommit the /text() at the end, otherwsie, it won't work
 def main():
     driver = get_driver()
     element = driver.find_element(by="xpath", 

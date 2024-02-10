@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
-
+#data is being extracted from https://automated.pythonanywhere.com/
 
 path_to_chromedriver = "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\GabTheFolder\\Python projects\\PYTHON-AUTOMATION-PROJECTS\\chromedriver-win64\\chromedriver.exe"
 
@@ -27,6 +27,8 @@ def get_driver():
     optionsForSearch.add_experimental_option("excludeSwitches", ["enable-automation"])
     optionsForSearch.add_argument("disable-blank-features=AutomationControlled")
     
+    #fixes the problem of the tab immediately closing after the code execution
+    optionsForSearch.add_experimental_option("detach", True)
 
     
     driver = webdriver.Chrome(service=service, options=optionsForSearch)       #add the service attribute to fix the IDE problem
@@ -40,7 +42,7 @@ def get_driver():
 def main():
     driver = get_driver()
     element = driver.find_element(by="xpath", 
-                                  value="/html/body/div[1]/div/h1[1]")
+                                  value="/html/body/div[1]/div/h1[2]")
     return element.text
 
 print(main())
