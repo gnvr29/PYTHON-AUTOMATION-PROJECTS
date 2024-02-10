@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+import time
 
 #data is being extracted from https://automated.pythonanywhere.com/
 
@@ -41,6 +42,8 @@ def get_driver():
 #For the xpath, ommit the /text() at the end
 def main():
     driver = get_driver()
+    #This delay allows the program to retrieve the dynamic data, and not only the static one
+    time.sleep(2)
     element = driver.find_element(by="xpath", 
                                   value="/html/body/div[1]/div/h1[2]")
     return element.text
