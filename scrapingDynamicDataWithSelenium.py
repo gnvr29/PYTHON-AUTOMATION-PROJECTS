@@ -39,6 +39,14 @@ def get_driver():
 
     return driver
 
+
+def clean_text(text):
+    '''Filters and extracts only the temperature (the dynamic data) from the webpage'''
+    output = int(text.split(": ")[1])
+    return output
+
+
+
 #For the xpath, ommit the /text() at the end
 def main():
     driver = get_driver()
@@ -46,6 +54,6 @@ def main():
     time.sleep(2)
     element = driver.find_element(by="xpath", 
                                   value="/html/body/div[1]/div/h1[2]")
-    return element.text
+    return clean_text(element.text)
 
 print(main())
