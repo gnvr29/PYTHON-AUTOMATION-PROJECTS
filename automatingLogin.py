@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.keys import Keys
+import time
 
 
 
@@ -39,11 +41,20 @@ def get_driver():
 
     return driver
 
-#For the xpath, ommit the /text() at the end, otherwsie, it won't work
+#we used id instead of an xpath, because the id is very specific and it is more practical to use it instead of having to provide an entire path
+#The .send_keys() is used to enter the username and password into the login field
+#Keys.RETURN was imported to automate the process of pressing enter/return
 def main():
     driver = get_driver()
-    element = driver.find_element(by="xpath", 
-                                  value="/html/body/div[1]/div/h1[1]")
-    return element.text
+    driver.find_element(by="id", 
+                        value="id_username").send_keys("automated")
+    time.sleep(2)
+    driver.find_element(by="id",
+                        value="id_password").send_keys("automatedautomated" + Keys.RETURN)
+    time.sleep(2)
+    driver.find_element(by="xpath", 
+                        value="/html/body/nav/div/a").click()
+    print(driver.current_url)
+    
 
-print(main())
+main()
