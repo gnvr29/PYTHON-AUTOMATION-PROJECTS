@@ -56,4 +56,4 @@ def main():
                                   value="/html/body/div[1]/div/h1[2]")
     return clean_text(element.text)
 
-main()
+print(main())

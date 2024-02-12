@@ -44,6 +44,7 @@ def get_driver():
 #we used id instead of an xpath, because the id is very specific and it is more practical to use it instead of having to provide an entire path
 #The .send_keys() is used to enter the username and password into the login field
 #Keys.RETURN was imported to automate the process of pressing enter/return
+#.click() is used to click on the element
 def main():
     driver = get_driver()
     driver.find_element(by="id", 
