@@ -49,7 +49,7 @@ def clean_text(text):
 def create_file(scraped_temperature):
     '''Gets the current date and time, and creates a new file with a it in its name, as well as the average world
     temperature at that exact time written in it, and then saves it to its assigned folder'''
-    
+    #To delete the files just access the folder through the Shell and type in: rm *.txt
     folder_path = "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\GabTheFolder\\Python projects\\PYTHON-AUTOMATION-PROJECTS\\Classes1,2,3,-Challenge+txtFiles"
     
     date = datetime.now()
@@ -66,9 +66,15 @@ def create_file(scraped_temperature):
 
 
 def main():
-    driver = get_driver("https://automated.pythonanywhere.com/")
-    web_element = driver.find_element(by="xpath",
-                                      value="/html/body/div[1]/div/h1[2]")
+    driver = get_driver("https://automated.pythonanywhere.com/login/")
+    driver.find_element(by="id",
+                        value="id_username").send_keys("automated")
+    time.sleep(2)
+    driver.find_element(by="id",
+                        value="id_password").send_keys("automatedautomated" + Keys.RETURN)
+    time.sleep(2)
+    web_element = driver.find_element(by="id",
+                                      value="displaytimer")
     time.sleep(2)
     element = web_element.text
     print(element)
